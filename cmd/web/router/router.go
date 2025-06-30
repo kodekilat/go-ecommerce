@@ -6,6 +6,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/kodekilat/go-ecommerce/cmd/web/handler" // Ganti dengan path modul Anda
+	authMiddleware "github.com/kodekilat/go-ecommerce/cmd/web/middleware"
 	"github.com/kodekilat/go-ecommerce/internal/repository"
 )
 
@@ -15,6 +16,7 @@ func New(userRepo *repository.UserRepository) http.Handler {
 	// Middleware dasar
 	r.Use(middleware.Logger)    // Mencatat log setiap request
 	r.Use(middleware.Recoverer) // Memulihkan dari panic
+	r.Use(authMiddleware.Authenticate)
 
 	authHandler := &handler.AuthHandler{UserRepo: userRepo}
 
@@ -26,6 +28,15 @@ func New(userRepo *repository.UserRepository) http.Handler {
 
 	r.Get("/login", authHandler.ShowLoginForm)
 	r.Post("/login", authHandler.HandleLogin)
+
+	r.Post("/logout", authHandler.HandleLogout)
+
+	r.Group(func(r chi.Router) {
+		r.Use(authMiddleware.RequireAuthentication)
+
+		// Daftarkan rute yang dilindungi di sini
+		r.Get("/account", handler.ShowAccountPage)
+	})
 
 	return r
 }

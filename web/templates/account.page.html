@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Akun Saya</title>
+    <!-- Gunakan style yang sama -->
+</head>
+<body>
+    <div class="container">
+        <h2>Selamat Datang, {{.Email}}!</h2>
+        <p>Ini adalah halaman akun Anda yang terlindungi.</p>
+        <p>User ID Anda: {{.UserID}}</p>
+        <br>
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

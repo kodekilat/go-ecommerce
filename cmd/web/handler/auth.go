@@ -120,3 +120,13 @@ func (h *AuthHandler) HandleLogin(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func (h *AuthHandler) HandleLogout(w http.ResponseWriter, r *http.Request) {
+	sess, _ := session.Store.Get(r, "auth-session")
+
+	// Hapus sesi dengan mengatur MaxAge menjadi -1
+	sess.Options.MaxAge = -1
+	sess.Save(r, w)
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
