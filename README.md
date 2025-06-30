@@ -4,6 +4,12 @@ Source Code [Membangun Autentikasi Modern dengan Supabase di Next.js](https://li
 
 Unduh atau clone repository ini
 
+Buat file .env di root folder aplikasi
+```
+# .gitignore
+.env
+```
+
 lalu jalankan server developement:
 
 ```bash
