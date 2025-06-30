@@ -20,8 +20,12 @@ func New(userRepo *repository.UserRepository) http.Handler {
 
 	// Definisikan rute
 	r.Get("/", handler.ShowHomePage)
+
 	r.Get("/register", authHandler.ShowRegistrationForm)
 	r.Post("/register", authHandler.HandleRegistration)
+
+	r.Get("/login", authHandler.ShowLoginForm)
+	r.Post("/login", authHandler.HandleLogin)
 
 	return r
 }

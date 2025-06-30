@@ -6,6 +6,12 @@ Unduh atau clone repository ini
 
 Buat file .env di root folder aplikasi
 ```
+DATABASE_URL=""
+SESSION_SECRET="kunci-rahasia-yang-sangat-panjang-dan-sulit-ditebak"
+```
+
+jangan lupa ditambahkan di file .gitignore
+```
 # .gitignore
 .env
 ```
