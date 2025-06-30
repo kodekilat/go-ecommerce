@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Online Go</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; color: #333; text-align: center; margin-top: 50px; }
+        h1 { color: #2c3e50; }
+        p { color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <h1>{{.PageTitle}}</h1>
+    <p>{{.WelcomeMessage}}</p>
+
+    <h2>Daftar Produk (Dummy)</h2>
+    <ul>
+        {{range .Products}}
+            <li>{{.Name}} - Rp{{.Price}}</li>
+        {{else}}
+            <li>Belum ada produk untuk ditampilkan.</li>
+        {{end}}
+    </ul>
+</body>
+</html>
