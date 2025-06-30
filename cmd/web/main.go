@@ -6,6 +6,7 @@ import (
 
 	"github.com/kodekilat/go-ecommerce/cmd/web/router" // Ganti dengan path modul Anda
 	"github.com/kodekilat/go-ecommerce/internal/database"
+	"github.com/kodekilat/go-ecommerce/internal/repository"
 )
 
 func main() {
@@ -15,8 +16,9 @@ func main() {
 	}
 	defer db.Close()
 
-	// Inisialisasi router
-	appRouter := router.New()
+	userRepo := &repository.UserRepository{DB: db}
+
+	appRouter := router.New(userRepo)
 
 	log.Println("Memulai server di http://localhost:8080")
 
