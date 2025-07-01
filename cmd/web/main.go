@@ -7,6 +7,7 @@ import (
 	"github.com/kodekilat/go-ecommerce/cmd/web/router" // Ganti dengan path modul Anda
 	"github.com/kodekilat/go-ecommerce/internal/database"
 	"github.com/kodekilat/go-ecommerce/internal/repository"
+	"github.com/kodekilat/go-ecommerce/internal/storage"
 )
 
 func main() {
@@ -16,9 +17,12 @@ func main() {
 	}
 	defer db.Close()
 
-	userRepo := &repository.UserRepository{DB: db}
+	storage.InitMinio()
 
-	appRouter := router.New(userRepo)
+	userRepo := &repository.UserRepository{DB: db}
+	productRepo := &repository.ProductRepository{DB: db}
+
+	appRouter := router.New(userRepo, productRepo)
 
 	log.Println("Memulai server di http://localhost:8080")
 

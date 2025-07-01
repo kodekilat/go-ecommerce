@@ -10,7 +10,7 @@ import (
 	"github.com/kodekilat/go-ecommerce/internal/repository"
 )
 
-func New(userRepo *repository.UserRepository) http.Handler {
+func New(userRepo *repository.UserRepository, productRepo *repository.ProductRepository) http.Handler {
 	r := chi.NewRouter()
 
 	// Middleware dasar
@@ -19,6 +19,7 @@ func New(userRepo *repository.UserRepository) http.Handler {
 	r.Use(authMiddleware.Authenticate)
 
 	authHandler := &handler.AuthHandler{UserRepo: userRepo}
+	adminHandler := &handler.AdminHandler{ProductRepo: productRepo}
 
 	// Definisikan rute
 	r.Get("/", handler.ShowHomePage)
@@ -36,6 +37,9 @@ func New(userRepo *repository.UserRepository) http.Handler {
 
 		// Daftarkan rute yang dilindungi di sini
 		r.Get("/account", handler.ShowAccountPage)
+
+		r.Get("/admin/products", adminHandler.ShowAdminProducts)
+		r.Post("/admin/products", adminHandler.HandleAddProduct)
 	})
 
 	return r
