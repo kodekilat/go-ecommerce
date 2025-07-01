@@ -22,3 +22,11 @@ lalu jalankan server developement:
 go run ./cmd/web/main.go
 ```
 
+Halaman yang di buat
+home page http://localhost:8080
+account page http://localhost:8080/account
+produk crud http://localhost:8080/admin/products
+
+login  http://localhost:8080/login
+register http://localhost:8080/register 
+

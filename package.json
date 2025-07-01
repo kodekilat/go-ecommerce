@@ -1,0 +1,17 @@
+{
+  "name": "go-ecommerce",
+  "version": "1.0.0",
+  "description": "Source Code [Membangun Autentikasi Modern dengan Supabase di Next.js](https://liataja.id//tutorial/membuat-ecommerce-dengan-go-part1)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css:watch": "unocss --watch \"./web/templates/**/*.html\" --out-file \"./web/static/css/style.css\"",
+    "css:build": "unocss \"./web/templates/**/*.html\" --out-file \"./web/static/css/style.css\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "unocss": "^66.3.2"
+  }
+}

@@ -20,9 +20,14 @@ func New(userRepo *repository.UserRepository, productRepo *repository.ProductRep
 
 	authHandler := &handler.AuthHandler{UserRepo: userRepo}
 	adminHandler := &handler.AdminHandler{ProductRepo: productRepo}
+	homeHandler := &handler.HomeHandler{ProductRepo: productRepo}
+	productHandler := &handler.ProductHandler{ProductRepo: productRepo}
+
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./web/static"))))
 
 	// Definisikan rute
-	r.Get("/", handler.ShowHomePage)
+	r.Get("/", homeHandler.ShowHomePage)
+	r.Get("/products/{productID}", productHandler.ShowProductDetail)
 
 	r.Get("/register", authHandler.ShowRegistrationForm)
 	r.Post("/register", authHandler.HandleRegistration)
@@ -40,6 +45,11 @@ func New(userRepo *repository.UserRepository, productRepo *repository.ProductRep
 
 		r.Get("/admin/products", adminHandler.ShowAdminProducts)
 		r.Post("/admin/products", adminHandler.HandleAddProduct)
+
+		r.Get("/admin/products/edit/{productID}", adminHandler.ShowEditProductForm)
+		r.Post("/admin/products/edit/{productID}", adminHandler.HandleUpdateProduct)
+
+		r.Post("/admin/products/delete/{productID}", adminHandler.HandleDeleteProduct)
 	})
 
 	return r

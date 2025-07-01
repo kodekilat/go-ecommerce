@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Akun Saya</title>
-    <!-- Gunakan style yang sama -->
+    <!-- Link ke stylesheet yang dihasilkan oleh UnoCSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body>
-    <div class="container">
-        <h2>Selamat Datang, {{.Email}}!</h2>
-        <p>Ini adalah halaman akun Anda yang terlindungi.</p>
-        <p>User ID Anda: {{.UserID}}</p>
+<body class="bg-gray-100 font-sans flex items-center justify-center min-h-screen">
+    
+    <div class="container bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
+        
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Selamat Datang!</h2>
+        
+        <p class="text-lg text-gray-600 mb-6">{{.Email}}</p>
+        
+        <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
+            <p class="text-sm text-gray-500">Ini adalah halaman akun Anda yang terlindungi.</p>
+            <p class="text-xs text-gray-400 mt-2 break-all">ID: {{.UserID}}</p>
+        </div>
+        
         <br>
-        <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
+        
+        <form action="/logout" method="POST" class="mt-4">
+            <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300">
+                Logout
+            </button>
         </form>
+
     </div>
+
 </body>
 </html>

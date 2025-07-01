@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Name}}</title>
+    <!-- Link ke stylesheet yang dihasilkan oleh UnoCSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navbar Sederhana (opsional, untuk navigasi kembali) -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-2">
+            <a href="/" class="text-lg font-bold text-gray-800 hover:text-blue-600">← Kembali ke Toko</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            
+            <!-- Grid untuk layout 2 kolom -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Kolom 1: Gambar Produk -->
+                <div class="flex items-center justify-center">
+                    <img src="{{.ImageURL}}" alt="{{.Name}}" class="w-full max-w-md h-auto object-contain rounded-lg">
+                </div>
+
+                <!-- Kolom 2: Detail Produk -->
+                <div class="flex flex-col justify-center">
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-4">{{.Name}}</h1>
+                    
+                    <div class="flex items-center mb-6">
+                        <p class="text-3xl font-bold text-green-600">Rp {{.Price}}</p>
+                        <span class="ml-4 inline-block bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
+                            Stok: {{.Stock}}
+                        </span>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-6">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-2">Deskripsi Produk</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            {{.Description}}
+                        </p>
+                    </div>
+
+                    <!-- Tombol Aksi (Call to Action) -->
+                    <div class="mt-8">
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300">
+                            + Tambah ke Keranjang
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
